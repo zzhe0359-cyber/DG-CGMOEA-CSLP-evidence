@@ -1,0 +1,325 @@
+{
+  "status": "AUTHOR_APPROVED_NUMERICAL_EVIDENCE_RELEASE",
+  "manuscript_version": "V10",
+  "scope": "current geometric-spreading evidence only",
+  "comparison_projects": 25,
+  "comparison_runs": 465,
+  "illustrative_cases": 1,
+  "illustrative_evaluations": 20100,
+  "sensitivity_fixed_layouts": 948,
+  "full_optimization_inputs_included": false,
+  "raw_drawings_included": false,
+  "coordinates_included": false,
+  "license": null,
+  "repository_url": "https://github.com/zzhe0359-cyber/DG-CGMOEA-CSLP-evidence",
+  "doi": null,
+  "reproduction_scope": [
+    "reported counts and project summaries",
+    "attained HV and IGD from objective fronts and shared reference definitions",
+    "paired tests from project-level effects"
+  ],
+  "not_reproducible_from_this_package": [
+    "new optimizer runs",
+    "independent geometry or transportation recalculation",
+    "new acoustic perturbation calculations"
+  ],
+  "missing_values": "Empty CSV cells are missing/undefined, not zero. Failed-run HV zero follows the stated analysis protocol.",
+  "privacy_limit": "Pseudonymized numerical evidence, not guaranteed anonymous; retained scientific values may match published results.",
+  "tables": [
+    {
+      "path": "data/case_manifest.csv",
+      "rows": 26,
+      "columns": [
+        "case_id",
+        "panel",
+        "movable_objects",
+        "decision_variables",
+        "sensitivity_candidates",
+        "sensitivity_covered",
+        "full_inputs_in_package"
+      ]
+    },
+    {
+      "path": "data/run_metrics.csv",
+      "rows": 465,
+      "columns": [
+        "run_id",
+        "panel",
+        "case_id",
+        "method",
+        "seed",
+        "nfe",
+        "population_size",
+        "run_feasible",
+        "feasible_evaluations",
+        "archive_size",
+        "hv_norm",
+        "igd_norm",
+        "elapsed_seconds",
+        "first_feasible_nfe",
+        "first_feasible_seconds",
+        "final_population_feasible_ratio",
+        "initial_feasible",
+        "gradient_probe_calls"
+      ]
+    },
+    {
+      "path": "data/project_metrics.csv",
+      "rows": 155,
+      "columns": [
+        "case_id",
+        "method",
+        "feasible_rate",
+        "hv_norm",
+        "elapsed_seconds",
+        "final_population_feasible_ratio",
+        "feasible_evaluations",
+        "archive_size",
+        "panel"
+      ]
+    },
+    {
+      "path": "data/paired_project_effects.csv",
+      "rows": 456,
+      "columns": [
+        "case_id",
+        "comparator",
+        "metric",
+        "effect",
+        "panel"
+      ]
+    },
+    {
+      "path": "data/paired_summary.csv",
+      "rows": 40,
+      "columns": [
+        "comparator",
+        "metric",
+        "projects",
+        "seed_pairs",
+        "median_paired_effect_positive_favors_D5R2",
+        "ci95_low",
+        "ci95_high",
+        "wins",
+        "ties",
+        "losses",
+        "p_raw_exact_signed_rank",
+        "p_holm",
+        "panel",
+        "holm_family_size"
+      ]
+    },
+    {
+      "path": "data/attained_objective_fronts.csv",
+      "rows": 2233,
+      "columns": [
+        "run_id",
+        "case_id",
+        "point_index",
+        "F1",
+        "F2",
+        "F3"
+      ]
+    },
+    {
+      "path": "data/reference_bounds.csv",
+      "rows": 25,
+      "columns": [
+        "case_id",
+        "panel",
+        "has_reference_front",
+        "lower_F1",
+        "lower_F2",
+        "lower_F3",
+        "upper_F1",
+        "upper_F2",
+        "upper_F3",
+        "span_F1",
+        "span_F2",
+        "span_F3"
+      ]
+    },
+    {
+      "path": "data/reference_fronts.csv",
+      "rows": 541,
+      "columns": [
+        "case_id",
+        "panel",
+        "point_index",
+        "F1_norm",
+        "F2_norm",
+        "F3_norm"
+      ]
+    },
+    {
+      "path": "data/sensitivity_candidate_objectives.csv",
+      "rows": 948,
+      "columns": [
+        "panel",
+        "case_id",
+        "solution_id",
+        "F1_noise",
+        "F2_closeness",
+        "F3_transportation"
+      ]
+    },
+    {
+      "path": "data/sensitivity_coverage.csv",
+      "rows": 26,
+      "columns": [
+        "panel",
+        "case_id",
+        "candidate_count",
+        "covered",
+        "source_runs"
+      ]
+    },
+    {
+      "path": "data/sensitivity_scenario_results.csv",
+      "rows": 1464,
+      "columns": [
+        "panel",
+        "case_id",
+        "structure",
+        "scenario",
+        "candidates",
+        "noise_rho",
+        "topsis_rho",
+        "nominal_choice",
+        "scenario_choice",
+        "nominal_choice_in_top_ties",
+        "nondominated_count",
+        "nominal_front_count",
+        "nominal_front_retention",
+        "nominal_choice_still_nondominated",
+        "top_tie_count"
+      ]
+    },
+    {
+      "path": "data/sensitivity_case_summary.csv",
+      "rows": 48,
+      "columns": [
+        "panel",
+        "case_id",
+        "structure",
+        "scenarios",
+        "median_noise_rho",
+        "median_topsis_rho",
+        "nominal_choice_retention",
+        "median_front_retention",
+        "minimum_front_retention",
+        "median_front_count"
+      ]
+    },
+    {
+      "path": "data/sensitivity_panel_summary.csv",
+      "rows": 6,
+      "columns": [
+        "panel",
+        "structure",
+        "covered_cases",
+        "median_noise_rho",
+        "median_topsis_rho",
+        "median_choice_retention",
+        "minimum_choice_retention",
+        "median_front_retention"
+      ]
+    },
+    {
+      "path": "data/sensitivity_source_offsets.csv",
+      "rows": 12993,
+      "columns": [
+        "case_id",
+        "structure",
+        "scenario",
+        "mapping_index",
+        "source_id",
+        "offset_db"
+      ]
+    },
+    {
+      "path": "data/illustrative_pareto_alternatives.csv",
+      "rows": 47,
+      "columns": [
+        "case_id",
+        "paper_solution_id",
+        "solution_id",
+        "nfe",
+        "F1",
+        "F2",
+        "F3",
+        "boundary",
+        "non_overlap",
+        "unavailable_zone",
+        "tower_crane_coverage",
+        "total_violation"
+      ]
+    },
+    {
+      "path": "data/illustrative_recorded_objectives.csv",
+      "rows": 1,
+      "columns": [
+        "case_id",
+        "layout_role",
+        "F1",
+        "F2",
+        "F3",
+        "boundary",
+        "non_overlap",
+        "tower_crane_coverage",
+        "unavailable_zone",
+        "total_violation"
+      ]
+    },
+    {
+      "path": "data/illustrative_evaluation_outcomes.csv",
+      "rows": 20100,
+      "columns": [
+        "case_id",
+        "nfe",
+        "completed_seconds",
+        "objective_valid",
+        "feasible",
+        "F1",
+        "F2",
+        "F3",
+        "boundary",
+        "non_overlap",
+        "unavailable_zone",
+        "tower_crane_coverage"
+      ]
+    },
+    {
+      "path": "data/illustrative_search_history.csv",
+      "rows": 100,
+      "columns": [
+        "iteration",
+        "nfe",
+        "feasible_ratio",
+        "best_total_violation",
+        "dg_repair_attempt_count",
+        "dg_repair_changed_count",
+        "dg_repair_improved_count",
+        "case_id"
+      ]
+    },
+    {
+      "path": "data/illustrative_repair_examples.csv",
+      "rows": 8,
+      "columns": [
+        "case_id",
+        "example_id",
+        "operator",
+        "side",
+        "nfe_before_batch",
+        "total_violation",
+        "boundary",
+        "non_overlap",
+        "tower_crane_coverage",
+        "unavailable_zone"
+      ]
+    }
+  ],
+  "release_version": "1.0.0",
+  "publication_authorized": true
+}

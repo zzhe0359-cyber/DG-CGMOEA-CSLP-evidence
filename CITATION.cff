@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite this numerical evidence repository when referring to these data."
+type: dataset
+title: "DG-CGMOEA: Numerical Evidence for Construction Site Layout Planning"
+version: "1.0.0"
+authors:
+  - family-names: Zhang
+    given-names: Zhe
+    affiliation: "School of Civil Engineering, Central South University"
+    orcid: "https://orcid.org/0009-0004-0920-3995"
+  - family-names: Wang
+    given-names: Jin
+    affiliation: "School of Civil Engineering, Central South University"
+repository-code: "https://github.com/zzhe0359-cyber/DG-CGMOEA-CSLP-evidence"
+url: "https://github.com/zzhe0359-cyber/DG-CGMOEA-CSLP-evidence"
+abstract: "Pseudonymized numerical evidence for constrained multi-objective construction site layout planning, including run metrics, attained objective fronts, paired comparisons, fixed-set acoustic sensitivity results, and a separate illustrative case. Raw drawings and geometric optimization inputs are not included."

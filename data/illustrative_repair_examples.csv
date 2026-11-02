@@ -1,0 +1,9 @@
+case_id,example_id,operator,side,nfe_before_batch,total_violation,boundary,non_overlap,tower_crane_coverage,unavailable_zone
+C001,E01,boundary,before,2500,7.5430167825694916,7.5430167825694916,0,0,0
+C001,E01,boundary,after,2500,0,0,0,0,0
+C001,E02,non_overlap,before,2300,5.8552303502392089,0,5.8552303502392089,0,0
+C001,E02,non_overlap,after,2300,0.001552889205006821,0,0.001552889205006821,0,0
+C001,E03,unavailable_zone,before,2700,0.72388700439449849,0,0,0,0.72388700439449849
+C001,E03,unavailable_zone,after,2700,0,0,0,0,0
+C001,E04,tower_crane_coverage,before,2700,7.7077669726098463,0,0,7.7077669726098463,0
+C001,E04,tower_crane_coverage,after,2700,0.19524168381520468,0,0,0.19524168381520468,0

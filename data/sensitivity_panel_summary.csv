@@ -1,0 +1,7 @@
+panel,structure,covered_cases,median_noise_rho,median_topsis_rho,median_choice_retention,minimum_choice_retention,median_front_retention
+illustrative_case,equipment_class_shared,1,0.99612627197039783,1,1,1,0.80851063829787229
+illustrative_case,source_independent,1,0.99462303422756715,1,1,1,0.76595744680851063
+development,equipment_class_shared,13,0.9865556583410422,0.99999999999999978,1,1,0.95999999999999996
+development,source_independent,13,0.98305084745762739,0.99999999999999989,1,1,0.95588235294117641
+opened_heldout,equipment_class_shared,10,0.99304980117359365,0.99995968392194801,1,1,0.97259759759759756
+opened_heldout,source_independent,10,0.99197099059683957,0.99992193097721849,1,1,0.95993589743589747

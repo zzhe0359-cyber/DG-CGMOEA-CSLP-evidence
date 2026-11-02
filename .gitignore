@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+private*/
+*DO_NOT_UPLOAD*
+*crosswalk*
+*.xlsx
+*.xls
+*.dxf
+*.dwg
