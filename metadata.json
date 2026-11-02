@@ -1,7 +1,7 @@
 {
-  "status": "AUTHOR_APPROVED_NUMERICAL_EVIDENCE_RELEASE",
-  "manuscript_version": "V10",
-  "scope": "current geometric-spreading evidence only",
+  "resource_type": "research_dataset",
+  "title": "DG-CGMOEA for Construction Site Layout Planning",
+  "scope": "Multi-project comparisons, repair analyses, canteen planning results, and noise-source sensitivity",
   "comparison_projects": 25,
   "comparison_runs": 465,
   "illustrative_cases": 1,
@@ -18,13 +18,8 @@
     "attained HV and IGD from objective fronts and shared reference definitions",
     "paired tests from project-level effects"
   ],
-  "not_reproducible_from_this_package": [
-    "new optimizer runs",
-    "independent geometry or transportation recalculation",
-    "new acoustic perturbation calculations"
-  ],
-  "missing_values": "Empty CSV cells are missing/undefined, not zero. Failed-run HV zero follows the stated analysis protocol.",
-  "privacy_limit": "Pseudonymized numerical evidence, not guaranteed anonymous; retained scientific values may match published results.",
+  "missing_values": "Empty CSV cells denote missing or undefined values. Runs without feasible fronts have HV equal to zero and undefined IGD.",
+  "case_identifiers": "Consistent pseudonymous case and source identifiers are used across tables.",
   "tables": [
     {
       "path": "data/case_manifest.csv",
@@ -320,6 +315,5 @@
       ]
     }
   ],
-  "release_version": "1.0.0",
-  "publication_authorized": true
+  "release_version": "1.0.1"
 }

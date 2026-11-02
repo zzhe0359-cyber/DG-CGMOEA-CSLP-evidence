@@ -1,4 +1,4 @@
-"""Verify the local evidence candidate and reproduce statistics, without network access."""
+"""Check dataset integrity and reproduce the reported statistical results."""
 
 from __future__ import annotations
 

@@ -1,47 +1,89 @@
-# DG-CGMOEA: Numerical Evidence for Construction Site Layout Planning
+# DG-CGMOEA for Construction Site Layout Planning
 
-Author-approved numerical evidence release, version 1.0.0. Repository: https://github.com/zzhe0359-cyber/DG-CGMOEA-CSLP-evidence
+**Zhe Zhang and Jin Wang**  
+School of Civil Engineering, Central South University
 
-Authors: Zhe Zhang and Jin Wang, School of Civil Engineering, Central South University. This repository accompanies a research manuscript; it does not imply journal acceptance. No DOI or reuse license has been assigned. Public accessibility does not by itself grant a reuse license.
+This repository contains the research data and statistical verification script for our study, *DG-CGMOEA: Knowledge-informed construction site layout planning using dynamic conflict graphs and multi-objective evolutionary optimization*.
 
-This package selects only the current geometric-spreading evidence used by manuscript V10. Historical learning-guidance, earlier acoustic-model, and superseded experiment families are not included.
+We develop a dynamic graph and constraint-guided multi-objective evolutionary algorithm (DG-CGMOEA) to plan temporary facilities, tower cranes, and material hoists on space-constrained construction sites. The method identifies active spatial conflicts and applies constraint-specific geometric repairs within a genetic--particle-swarm search, generating feasible alternatives that balance receiver noise, facility closeness, and material transportation cost.
 
-## Contents and boundaries
+## Experiments
 
-- 465 comparison runs: 15 development projects with seven methods and 10 additional projects with five methods, all at three seeds.
-- The additional panel is named `opened_heldout`: it is post hoc confirmation on previously examined projects, not an untouched blind test.
-- One separate illustrative case: 20,100 evaluated layouts, 47 Pareto alternatives, population-search summaries, and numerical repair examples. It is not part of the 25-project comparison denominator.
-- Fixed-set noise-source sensitivity: 948 layouts in 24 covered cases. The coverage table retains two development cases without feasible layouts. Each covered case has one nominal scenario and 30 scenarios for each of two perturbation structures.
-- Per-run attained objective fronts and shared normalization/reference definitions permit independent HV/IGD recalculation. Raw objective values are retained without privacy noise, scaling or numerical rounding for presentation.
+| Experiment | Cases | Runs or layouts | Purpose |
+| --- | ---: | ---: | --- |
+| Development comparison | 15 | 315 runs | Compare constrained optimizers and examine repair mechanisms |
+| Additional project comparison | 10 | 150 runs | Examine performance on additional projects |
+| Canteen planning case | 1 | 20,100 evaluated layouts; 47 feasible Pareto alternatives | Examine the search process and preference-based selection |
+| Noise-source sensitivity | 24 | 948 fixed layouts | Assess ranking and Pareto-set changes under source-level perturbations |
 
-This is not a complete optimization benchmark. Raw CAD, full input workbooks, object coordinates, site polygons, receiver coordinates, original case identifiers, local paths and private crosswalks are excluded. It cannot independently regenerate layouts, validate geometry/A* transport, or recompute new acoustic scenarios. Those require permitted model inputs. Existing scientific numbers may match figures or other records, so the package is pseudonymized, not guaranteed anonymous.
+The project comparisons use three random seeds and a budget of 1,050 complete evaluations per run. Across the 25 projects, DG-CGMOEA produces feasible fronts in 69 of 75 runs, compared with 29 of 75 for the same hybrid without conflict-guided repair and 19 of 75 for each constrained NSGA baseline. Project-level effects and statistical tests are supplied alongside the run metrics.
 
-## Data conventions
+The canteen case is reported separately from these comparisons. The sensitivity analysis uses one nominal scenario and 30 scenarios for each of two perturbation structures per covered case; `sensitivity_coverage.csv` also records the two Development cases without feasible candidate sets.
 
-CSV uses UTF-8, a decimal point and one header row. Missing/undefined values are blank, not zero. Zero HV for a run without a feasible front is the published analysis convention; its IGD remains undefined. Numeric values are exported at round-trip precision.
+## Data Guide
 
-`D001`-style identifiers denote development projects, `H001`-style identifiers the additional projects, and `C001` the separate illustrative case. Run identifiers combine the pseudonymous case, method and random seed. A case has the same identifier in all tables. Solution identifiers are case-scoped and consistent between sensitivity and illustrative Pareto data; `paper_solution_id` links the latter to labels already used in the paper.
+All data tables are in [`data/`](data/).
 
-`F1`/`F1_noise` is modeled receiver noise in dB(A). `F2`/`F2_closeness` is the minimization-form facility-closeness planning score; `F3`/`F3_transportation` is the modeled transportation-cost score. All three are minimized. Do not infer a calibrated currency from the exported score alone. A normalized HV can exceed one because its reference point is (1.1, 1.1, 1.1).
+| Files | Contents |
+| --- | --- |
+| `case_manifest.csv` | Case identifiers, object counts, decision-variable counts, and sensitivity coverage |
+| `run_metrics.csv`, `project_metrics.csv` | Run outcomes and project-level summaries |
+| `paired_project_effects.csv`, `paired_summary.csv` | Paired effects, intervals, exact signed-rank tests, and Holm-adjusted p-values |
+| `attained_objective_fronts.csv` | Objective values of the feasible fronts obtained in each run |
+| `reference_bounds.csv`, `reference_fronts.csv` | Shared normalization bounds and empirical reference fronts for each project |
+| `sensitivity_candidate_objectives.csv` | Nominal objective values of the fixed candidate layouts |
+| `sensitivity_coverage.csv`, `sensitivity_scenario_results.csv` | Case coverage and scenario-level ranking and front-membership results |
+| `sensitivity_case_summary.csv`, `sensitivity_panel_summary.csv` | Case- and panel-level sensitivity summaries |
+| `sensitivity_source_offsets.csv` | Source-level perturbations used in the sensitivity analysis |
+| `illustrative_pareto_alternatives.csv`, `illustrative_recorded_objectives.csv` | Canteen alternatives and the evaluated recorded layout |
+| `illustrative_evaluation_outcomes.csv`, `illustrative_search_history.csv` | Canteen evaluation outcomes and population-search history |
+| `illustrative_repair_examples.csv` | Numerical before-and-after results for selected repair examples |
 
-Constraint components `boundary`, `non_overlap` and `unavailable_zone` report implementation area violations, whereas `tower_crane_coverage` reports a distance shortfall. Their implementation sum is a violation score, not a single physical measurement with common units. Runtime columns are seconds; NFE is a count of complete objective-and-constraint evaluations. Constraint-only repair probes consume time but do not increment that NFE.
+[`data_dictionary.csv`](data_dictionary.csv) describes the fields, data types, and missing values. [`metadata.json`](metadata.json) provides the table inventory, and [`SHA256SUMS.csv`](SHA256SUMS.csv) records file checksums.
 
-In `project_metrics`, `elapsed_seconds` is the median of seed runtimes within the project. The paper's panel runtime is the run-level median, reconstructed directly from `run_metrics`; these are distinct aggregations. Paired effects are positive in favor of D5R2. Runtime and IGD effects reverse the subtraction direction accordingly. Conditional IGD comparisons use same-seed jointly feasible pairs before project aggregation, not unmatched feasible-run medians.
+### Case and Method Identifiers
 
-`data_dictionary.csv` lists fields, inferred types and missing counts. `metadata.json` lists table sizes and the scope of reproducibility. Source offsets are retained exactly with neutral case/source identifiers; they do not provide the underlying source-to-receiver geometry needed for new propagation calculations.
+`D001`-style identifiers refer to Development projects, `H001`-style identifiers to additional projects, and `C001` to the canteen case. Identifiers are consistent across tables. The additional panel is stored as `opened_heldout`, denoting a post hoc confirmation on projects examined in earlier work. Solution identifiers are case-specific, and `paper_solution_id` connects canteen alternatives to the labels used in the article.
 
-## Local verification
+| Method identifier | Configuration |
+| --- | --- |
+| `NSGA2`, `NSGA3` | Constrained NSGA-II and NSGA-III |
+| `CTAEA` | Constrained two-archive evolutionary algorithm |
+| `D5R1` | Genetic--particle-swarm hybrid with geometry-aware initialization and feasibility-first survival |
+| `D5R2` | DG-CGMOEA, adding dynamic conflict diagnosis and geometric repair to D5R1 |
+| `D5R2_NO_STATIC` | D5R2 with static relation weights removed from repair |
+| `D5R2_AGGREGATE_GRADIENT` | D5R2 with aggregate numerical repair using finite-difference pseudoinverse steps |
 
-With Python 3.10 or later:
+The Development panel includes all seven configurations; the additional panel includes `NSGA2`, `NSGA3`, `CTAEA`, `D5R1`, and `D5R2`.
 
-```text
+### Metric Conventions
+
+- `F1` is modeled receiver noise in dB(A), `F2` is the facility-closeness score in minimization form, and `F3` is the material transportation-cost score. All three objectives are minimized; F2 and F3 are planning scores.
+- A run without a feasible front has HV equal to zero and undefined IGD. Undefined values are blank in the CSV files. The normalized HV reference point is `(1.1, 1.1, 1.1)`, so HV may exceed one.
+- Panel HV is calculated by taking the median across seeds within each project, then the median across projects. Panel runtime is the median across runs; the `elapsed_seconds` column in `project_metrics.csv` gives within-project seed medians.
+- Positive paired effects favor D5R2. For runtime and IGD, the effect is comparator minus D5R2; for HV and feasible-run rate, it is D5R2 minus comparator. Conditional IGD uses same-seed jointly feasible pairs before project aggregation.
+- Boundary, non-overlap, and unavailable-zone violations are areas in square meters; crane-coverage violations are distance shortfalls in meters. Their sum is the aggregate violation score used by the implementation.
+- Runtime is measured in seconds. NFE counts complete objective-and-constraint evaluations; constraint-only repair checks contribute to runtime separately.
+
+Tables use UTF-8 CSV and retain round-trip numerical precision. Site and source identifiers are pseudonymized. The shared materials comprise objective values and numerical logs; raw drawings and site coordinates are not distributed in this repository.
+
+## Reproduce the Statistical Results
+
+Use Python 3.10 or later. The following command checks file integrity and reproduces method summaries using the Python standard library:
+
+```bash
 python verify_and_reproduce.py
 ```
 
-This checks every release file hash and reproduces method counts and summary values using the standard library. The Git metadata directory and Python bytecode caches are ignored. For independent HV/IGD and exact paired-test checks, install compatible NumPy and SciPy plus pymoo 0.6.1.5, then run:
+To also recalculate HV, IGD, exact signed-rank tests, and Holm corrections:
 
-```text
+```bash
+python -m pip install numpy scipy pymoo==0.6.1.5
 python verify_and_reproduce.py --full-check
 ```
 
-The check does not rerun any optimizer or perform independent physics validation. No network operation or publication is performed by the script. Hashes establish package consistency, not measurement validity or publication permission.
+The full check covers indicators for all 465 comparison runs and the 40 paired tests. It returns a JSON report containing method summaries and the differences between the supplied and recalculated indicators.
+
+## Citation
+
+Please cite this dataset when using the data or reporting analyses based on them. Author and dataset information are provided in [`CITATION.cff`](CITATION.cff).
